@@ -35,8 +35,23 @@
 // // [1,2,3,4,5,6,7]
 // ```
 
-function flatten(array){
-    // your code here
+function flatten(arr){
+    const initialValue = [];
+
+    function reducer(total, value) {
+        if(Array.isArray(value)){
+            return total.concat(flatten(value));
+        } else {
+            return total.concat(value);
+        }
+    };
+    
+    return arr.reduce(reducer, initialValue);
 }
+
+let myArr = [[1,2],[3,4],[5,6,7]];
+let nested = [[1,2],[3, [4, 5]], [6], 7];
+console.log(flatten(myArr));
+console.log(flatten(nested));
 
 module.exports = flatten;
